@@ -4,7 +4,7 @@
 	<title>Hostel Form Fill UP</title>
 </head>
 <body>
-	<form method="POST" action = "HostelDb.ph">
+	<form method="POST" action = "hosteldb.php">
 		<table>
 			<tr>
 				<td>
@@ -29,6 +29,18 @@
 				<span class="error">*<?php echo $emailErr;?></span>
 			</td>
 		</tr>
+		<tr>
+			<td>Select:</td>
+			<td>
+				<select name = "subject[]" size="4" multiple>
+				<option vlaue ="java">java</option>
+				<option value="c#">c#</option>
+
+				<option value="Data Base">Data Base</option>
+				<option value="Hadoop">Hadoop</option>
+				<option value="VB script">VB script</option>
+			</select>
+			<span class="error">*<?php echo $subjectErr;?></span>
 
 
 		</table>
