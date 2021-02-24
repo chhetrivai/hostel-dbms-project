@@ -2,12 +2,31 @@
 <html>
 <head>
 	<title>Hostel Form Fill UP</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+  box-sizing: border-box;
+}
+input
+{
+     border-color: #08EDF9;
+     border-radius: 5px;
+}
+p
+{
+   color:#357B7F;
+}
+.first
+{
+	color:#1164E7;
+}
+</style>
 </head>
 <body>
+<<<<<<< HEAD
 	<?php
 	//define variables and set to empty array_values
-	$nameErr= $emailErr = $genderErr= $batcErr= $agreeErr = "";
-	$name = $email = $gender = $class = $batch = $agree="";
+	$nameErr= $emailErr = $genderErr= $rollno= $agreeErr = $facultyErr="";
 	$submit =0;
 
 	if($_SERVER["REQUEST_METHOD"] =="POST"){
@@ -24,96 +43,125 @@
 		else
 		$submit=1;
 		}
-	}
+	
 		if (empty($_POST["email"])) {
 			$emailErr = "Email is required";
 			$submit=0;
 
 		}else {
-			$email=test_input($_POST["email"]);
 
 			// check if e-mail address is well-formed
 			if(!filter_var($email,FILTER_VALIDATE_EMAIL)) {
 				$emailErr="Invalid email format";
+				$submit=0;
+
 			}
 		}
-		if (empty($_POST["course"])) {
-			$course = "";
-		}else {
-			$course=test_input($_POST["course"]);
-
-		}
-		if (empty($_POST["class"])) {
-			$class="";
-		}
-		else {
-			$class = test_input($_POST["class"]);
-		}
+		
+		
 
 		 if (empty($_POST["gender"])) {
 		 	$genderErr = "Gender is required";
+		 	$submit=0;
+
 		 }
-		 else{
-		 	$gender = test_input($_POST["gender"]);
-		 }
-		 if(empty($_POST['checked']))
+		 if(empty($_POST['checked'])){
 				$agreeErr = 'You must agree to terms';
+				$submit = 0;
+		 }
 
-		 if(empty($_POST["subject"])) {
-		 	$subjectErr = "You must select 1 or more";
-		 }else {
-		 	$subject = $_POST["subject"];
-
+		 if(empty($_POST["faculty"])) {
+		 	$subjectErr = "You must select 1 ";
+		 	$submit = 0;
 		 }
 		}
-
-		function test_input($data) {
-			$data = trim($data);
-			$data = stripslashes($data);
-			$data = htmlspecialchars($data);
-			return $data;
-		}
+		?>
 	<form method="POST" action = "hosteldb.php">
+=======
+	<form autocomplete="off" method="POST" action = "hosteldb.php">
+>>>>>>> cebfc1ca5f55c5515e86556c6d52a854b482bbe6
 		<table>
 			<tr>
-				<td>
-					FirstName:
+				<td  class="first">
+					FirstName
+					<td > <p class="notation">:</p></td>
 				</td>
 				<td>
-				<input type="text" name="name">
+				<input type="text" name="name" required>
 				<span class="error">*<?php echo $nameErr;?></span>
 			</td>
-				<td>LastName:
-				</td>
+		</tr>
+			<tr>
+				<td  class="first">LastName</td><td > <p class="notation">:</p></td>
 				<td>
-					<input type="text" name="name">
+					<input type="text" name="name" required >
 					<span class="error">*<?php echo $nameErr;?></span>
 				</td>
 			</tr>
-
 		<tr>
-
-			<td>E-mail:</td>
-			<td><input type="text" name="email">
+			<td  class="first">E-mail</td><td > <p class="notation">:</p></td>
+			<td><input type="text" name="email" required>
 				<span class="error">*<?php echo $emailErr;?></span>
 			</td>
 		</tr>
 		<tr>
-			<td>Select:</td>
+			<td  class="first">Address</td>
+			<td > <p class="notation">:</p></td>
 			<td>
-				<select name = "subject[]" size="4" multiple>
-				<option vlaue ="java">java</option>
-				<option value="c#">c#</option>
-
-				<option value="Data Base">Data Base</option>
-				<option value="Hadoop">Hadoop</option>
-				<option value="VB script">VB script</option>
+			    <div class="autocomplete" style="width:300px;">
+                <input id="myInput" type="text" name="district" placeholder="district"  test_input>
+               </div>
+			</td>
+		</tr>
+		<tr>
+			<td  class="first">Phone no.</td>
+			<td > <p class="notation">:</p></td>
+			<td>
+			<input type="text" name="phone" placeholder="9800000000" required="">
+		</td>
+		</tr>
+		<tr>
+			<td  class="first">Gender</td><td > <p class="notation">:</p></td>
+			<td>
+				<input type="radio" name="gender" value="male"  required="">Male
+				<input type="radio" name="gender" value="female" required="">Female
+			</td>
+		</tr>
+		<tr>
+			<td  class="first">Choose your subject</td><td > <p class="notation">:</p></td>
+			<td>
+				<select name = "subject" required="">
+				<option value="agriculture"></option>
+				<option value="architecture">Architecture</option>
+				<option value="civil">Civil</option>
+				<option value="computer">Computer</option>
+				<option value="electronics">Electronics</option>
+				<option value="electrical">Electrical</option>
+				<option value="mechanical">Mechanical</option>
 			</select>
-			<span class="error">*<?php echo $subjectErr;?></span>
-
-
-		</table>
+		    </td>
+		</tr>
+		<tr>
+		   <td  class="first">Rollno</td>
+		   <td > <p class="notation">:</p></td>
+		    <td><input type="text" placeholder="PUR074BCT034"></td>
+		</tr>
+		<tr>
+			<td  class="first">Upload your photo</td>
+			<td > <p class="notation">:</p></td>
+			<td>
+				<input type="file" name="photo" required>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			 </td>
+			 <td></td>
+			<td>
+				<input type="submit" name="submit" value="Submit">
+			</td>
+		</tr>
+	</table>
 	</form>
-
 </body>
 </html>
